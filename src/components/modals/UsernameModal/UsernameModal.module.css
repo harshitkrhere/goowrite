@@ -1,0 +1,86 @@
+/* =============================================================================
+   USERNAME MODAL — DOPAMINE DESIGN
+   ============================================================================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modalWrapper {
+  width: 100%;
+  max-width: 420px;
+}
+
+.modal {
+  width: 100%;
+  background: #0A0A0A;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 20px 60px -20px rgba(0,0,0,0.7);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.iconWrapper {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--aurora-primary), #a855f7);
+  border-radius: 16px;
+  color: white;
+  margin: 0 auto 16px;
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.3);
+}
+
+.header h2 {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.header p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.spinnerSmall {
+  animation: spin 1s linear infinite;
+  color: var(--text-tertiary);
+}
+
+.available {
+  color: #34d399;
+  font-size: 12px;
+}
+
+.unavailable {
+  color: #fb7185;
+  font-size: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

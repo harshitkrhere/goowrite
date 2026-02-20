@@ -1,0 +1,150 @@
+/* =============================================================================
+   BUTTON COMPONENT — DOPAMINE ACTION
+   ============================================================================= */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  border-radius: var(--radius-full); /* Pill shape */
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+  white-space: nowrap;
+  user-select: none;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+/* -----------------------------------------------------------------------------
+   SIZES
+   ----------------------------------------------------------------------------- */
+.sm {
+  height: 32px;
+  padding: 0 16px;
+  font-size: 13px;
+}
+
+.md {
+  height: 44px;
+  padding: 0 24px;
+  font-size: 15px;
+}
+
+.lg {
+  height: 52px;
+  padding: 0 32px;
+  font-size: 16px;
+}
+
+/* -----------------------------------------------------------------------------
+   VARIANTS
+   ----------------------------------------------------------------------------- */
+
+/* Primary — Neon Aurora Gradient */
+.primary {
+  background: linear-gradient(135deg, var(--aurora-primary), var(--aurora-secondary));
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.primary:hover:not(:disabled) {
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.5);
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Secondary — Glass/Void */
+.secondary {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--backdrop-blur));
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--void-highlight);
+  border-color: var(--text-tertiary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Ghost — Text Hover */
+.ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.ghost:hover:not(:disabled) {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-primary);
+}
+
+/* Danger — Error Gradient */
+.danger {
+  background: linear-gradient(135deg, var(--aurora-rose), #E11D48);
+  color: white;
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+}
+
+.danger:hover:not(:disabled) {
+  box-shadow: 0 8px 20px rgba(244, 63, 94, 0.5);
+  transform: translateY(-2px);
+}
+
+/* -----------------------------------------------------------------------------
+   MODIFIERS
+   ----------------------------------------------------------------------------- */
+.fullWidth {
+  width: 100%;
+}
+
+/* -----------------------------------------------------------------------------
+   ICON & LABEL
+   ----------------------------------------------------------------------------- */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+/* -----------------------------------------------------------------------------
+   LOADING STATE
+   ----------------------------------------------------------------------------- */
+.loading {
+  pointer-events: none;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -1,42 +1,259 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =============================================================================
+   GOO WRITE — DOPAMINE DESIGN SYSTEM
+   Philosophy: "Deep Lux" — Void Backgrounds, Neon Aurora Accents, Magnetic Feel
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   CSS RESET & BASE
+   ----------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+ul, ol {
+  list-style: none;
 }
 
-html,
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
 body {
-  max-width: 100vw;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background-color: var(--void-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: #fff;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* -----------------------------------------------------------------------------
+   DESIGN TOKENS
+   ----------------------------------------------------------------------------- */
+:root {
+  /* --- THE VOID (Backgrounds) --- */
+  --void-deep: #050505;       /* Main App Background */
+  --void-surface: #0A0A0A;    /* Card/Sidebar Backgrounds */
+  --void-highlight: #121212;  /* Hover states */
+  --void-border: #1F1F1F;     /* Subtle borders */
+
+  /* --- NEON AURORA (Accents) --- */
+  --aurora-primary: #6366F1;  /* Electric Indigo - Primary Action */
+  --aurora-secondary: #8B5CF6; /* Violet - Secondary/Gradient */
+  --aurora-teal: #14B8A6;      /* Success/Safety */
+  --aurora-rose: #F43F5E;      /* Destructive/Alert */
+  --aurora-amber: #F59E0B;     /* Warning */
+
+  /* --- STARDUST (Text) --- */
+  --text-primary: #FFFFFF;
+  --text-secondary: #A1A1AA;   /* Muted Gray */
+  --text-tertiary: #52525B;    /* Deep Gray */
+  --text-inverse: #000000;
+
+  /* --- EFFECTS --- */
+  --glass-bg: rgba(10, 10, 10, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
+  --backdrop-blur: 20px;
+  
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+  --shadow-float: 0 10px 40px -10px rgba(0,0,0,0.5);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  
+  /* --- PHYSICS (Animations) --- */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);           /* Elegant */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-smooth: 300ms;
+
+  /* --- SIZING --- */
+  --sidebar-width: 280px;
+  --sidebar-collapsed: 80px;
+  --container-max: 1200px;
+  
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* --- FONTS --- */
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* =========================================================================
+     LEGACY VARIABLE ALIASES
+     Maps old design-system names → current Dopamine tokens.
+     Keeps all existing pages working without touching their CSS.
+     ========================================================================= */
+
+  /* — Spacing Scale — */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* — Typography Scale — */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+
+  /* — Font Weights — */
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* — Accent Colors (Legacy) — */
+  --accent-primary: var(--aurora-primary);
+  --accent-secondary: var(--aurora-secondary);
+  --accent-primary-hover: #818CF8;
+  --accent-primary-muted: rgba(99, 102, 241, 0.15);
+  --accent-secondary-muted: rgba(139, 92, 246, 0.15);
+  --accent-base: var(--aurora-primary);
+  --accent-dark: rgba(99, 102, 241, 0.15);
+  --accent-light: #A5B4FC;
+
+  /* — Text (Legacy) — */
+  --text-muted: var(--text-tertiary);
+
+  /* — Backgrounds (Legacy) — */
+  --bg-primary: var(--void-deep);
+  --bg-secondary: var(--void-surface);
+  --bg-tertiary: var(--void-highlight);
+  --bg-glass: var(--glass-bg);
+  --bg-glass-hover: rgba(255, 255, 255, 0.06);
+
+  /* — Borders (Legacy) — */
+  --border-glass: var(--glass-border);
+  --border-width: 1px;
+  --neutral-dark: var(--void-border);
+  --neutral-light: var(--text-tertiary);
+
+  /* — Semantic Colors — */
+  --success: #34D399;
+  --warning: #FBBF24;
+  --error: #FB7185;
+  --focus: var(--aurora-primary);
+  --white: #FFFFFF;
+
+  --color-success: #34D399;
+  --color-success-muted: rgba(16, 185, 129, 0.15);
+  --color-warning: #FBBF24;
+  --color-warning-muted: rgba(245, 158, 11, 0.15);
+  --color-danger: #FB7185;
+  --color-danger-muted: rgba(244, 63, 94, 0.15);
+
+  /* — Blur Scale — */
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 20px;
+
+  /* — Easing (Legacy) — */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* — Glass Variants — */
+  --border-glass-strong: rgba(255, 255, 255, 0.14);
+  --bg-elevated: rgba(15, 15, 15, 0.85);
+
+  /* — Shadow Scale — */
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+  /* — Z-Index Scale — */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 1000;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* -----------------------------------------------------------------------------
+   UTILITIES
+   ----------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  font-weight: 600;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.text-gradient {
+  background: linear-gradient(135deg, #FFF 0%, #A1A1AA 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-aurora {
+  background: linear-gradient(135deg, var(--aurora-primary) 0%, var(--aurora-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glass Panel Utility */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--void-border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* -----------------------------------------------------------------------------
+   LOADING
+   ----------------------------------------------------------------------------- */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; box-shadow: 0 0 0 rgba(99, 102, 241, 0); }
+  50% { opacity: 1; box-shadow: 0 0 20px rgba(99, 102, 241, 0.2); }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--void-surface) 0%, var(--void-highlight) 50%, var(--void-surface) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

@@ -1,0 +1,312 @@
+/* =============================================================================
+   BATCH DETAIL PAGE — DOPAMINE DESIGN
+   ============================================================================= */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s var(--ease-spring);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading State */
+.loadingContainer,
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  gap: 16px;
+  color: var(--text-tertiary);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: var(--aurora-primary);
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Back Button */
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+  margin-bottom: 24px;
+  backdrop-filter: blur(4px);
+}
+
+.backBtn:hover {
+  color: var(--text-primary);
+  background: var(--void-highlight);
+  transform: translateX(-4px);
+  border-color: var(--text-tertiary);
+}
+
+/* Batch Header */
+.batchHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.batchName {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text; /* Fix lint */
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.batchMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--void-surface);
+  border: 1px solid var(--void-border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.metaItem svg {
+  color: var(--aurora-primary);
+  opacity: 0.8;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusBadge {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.statusBadge.active {
+  background: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+}
+
+.statusBadge.inactive {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--glass-border);
+}
+
+/* Students Card */
+.studentsCard {
+  margin-top: 24px;
+  /* Removed redundant glass styles as Card component handles them */
+  box-shadow: var(--shadow-float);
+}
+
+.studentsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.studentsHeader h2 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Students List */
+.studentsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.studentRow {
+  display: grid;
+  grid-template-columns: 1fr auto 48px;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--glass-border);
+  transition: all 0.2s;
+}
+
+.studentRow:last-child {
+  border-bottom: none;
+}
+
+.studentRow:hover {
+  background: var(--void-highlight);
+}
+
+.studentInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--void-border), var(--void-surface));
+  border-radius: 12px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  border: 1px solid var(--glass-border);
+}
+
+.studentName {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.admissionNo {
+  display: block;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.studentContact {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.removeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0;
+}
+
+.studentRow:hover .removeBtn {
+  opacity: 1;
+}
+
+.removeBtn:hover {
+  background: rgba(244, 63, 94, 0.1);
+  color: #fb7185;
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  gap: 16px;
+  color: var(--text-tertiary);
+  text-align: center;
+  background: var(--void-surface);
+  margin: 16px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--void-border);
+}
+
+.emptyState h3 {
+  font-size: 18px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.emptyState p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  max-width: 300px;
+  margin-bottom: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .batchHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .batchMeta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .studentRow {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    position: relative;
+  }
+  
+  .removeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    opacity: 1;
+  }
+
+  .studentContact {
+    padding-left: 56px; /* Align with text */
+    font-size: 12px;
+  }
+}

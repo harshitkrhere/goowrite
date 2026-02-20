@@ -1,0 +1,217 @@
+/* =============================================================================
+   DASHBOARD HOME — DEEP LUX
+   ============================================================================= */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  animation: fadeIn 0.6s var(--ease-smooth);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -----------------------------------------------------------------------------
+   PAGE HEADER
+   ----------------------------------------------------------------------------- */
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.pageTitle {
+  font-size: 32px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, white 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pageSubtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.pageSubtitle strong {
+  color: var(--aurora-primary);
+  font-weight: 600;
+}
+
+.roleBadge {
+  padding: 6px 16px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--aurora-primary);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+}
+
+/* -----------------------------------------------------------------------------
+   STATS GRID
+   ----------------------------------------------------------------------------- */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.statCard {
+  position: relative;
+  background: var(--glass-bg) !important; /* Override Card component base if needed */
+  border: 1px solid var(--glass-border) !important;
+  backdrop-filter: blur(var(--backdrop-blur));
+  overflow: hidden;
+  transition: all 0.3s var(--ease-spring);
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--aurora-primary) !important;
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.3);
+}
+
+/* Variant Glows */
+.statCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, var(--glow-color, rgba(255,255,255,0.05)) 0%, transparent 70%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Icon Styles */
+.statIcon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.blue { 
+  background: rgba(59, 130, 246, 0.1); 
+  color: #60A5FA;
+  --glow-color: rgba(59, 130, 246, 0.2);
+}
+.purple { 
+  background: rgba(139, 92, 246, 0.1); 
+  color: #A78BFA;
+  --glow-color: rgba(139, 92, 246, 0.2);
+}
+.green { 
+  background: rgba(16, 185, 129, 0.1); 
+  color: #34D399;
+  --glow-color: rgba(16, 185, 129, 0.2);
+}
+.orange { 
+  background: rgba(245, 158, 11, 0.1); 
+  color: #FBBF24;
+  --glow-color: rgba(245, 158, 11, 0.2);
+}
+
+.statValue {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.statTitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* -----------------------------------------------------------------------------
+   QUICK ACTIONS
+   ----------------------------------------------------------------------------- */
+.sectionTitle {
+  font-size: 20px;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sectionTitle::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--glass-border);
+}
+
+.actionsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Customizing Buttons appearing in this grid */
+.actionsGrid button {
+  height: auto;
+  padding: 16px 24px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  justify-content: flex-start;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.actionsGrid button:hover {
+  background: var(--void-highlight);
+  border-color: var(--aurora-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* -----------------------------------------------------------------------------
+   LOADING & EMPTY
+   ----------------------------------------------------------------------------- */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--text-secondary);
+}
+
+.spinner {
+  margin-bottom: 16px;
+  animation: spin 1s linear infinite;
+  color: var(--aurora-primary);
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.emptyIcon {
+  color: var(--aurora-secondary);
+  margin-bottom: 20px;
+}

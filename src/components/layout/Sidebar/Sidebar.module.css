@@ -1,0 +1,209 @@
+/* =============================================================================
+   SIDEBAR — FLOATING GLASS PALETTE
+   ============================================================================= */
+
+.sidebar {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  bottom: 20px;
+  width: calc(var(--sidebar-width) - 40px); /* Floating width */
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-float);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  z-index: var(--z-sticky);
+  transition: all var(--duration-normal) var(--ease-spring);
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+  left: 20px;
+}
+
+/* -----------------------------------------------------------------------------
+   LOGO AREA
+   ----------------------------------------------------------------------------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 24px;
+  margin-bottom: 20px;
+}
+
+.logoIcon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--aurora-primary), var(--aurora-secondary));
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+  color: white;
+}
+
+.logoText {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+/* -----------------------------------------------------------------------------
+   NAVIGATION
+   ----------------------------------------------------------------------------- */
+.nav {
+  flex: 1;
+  padding: 0 16px;
+  overflow-y: auto;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s var(--ease-smooth);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.navLink:hover {
+  background: var(--void-highlight);
+  color: var(--text-primary);
+  transform: translateX(4px); /* Magnetic pull */
+}
+
+.navLink.active {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--text-primary);
+}
+
+.navLink.active .navIcon {
+  color: var(--aurora-primary);
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
+}
+
+.navIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  transition: all 0.2s;
+}
+
+.navLabel {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Active "Beam" Indicator */
+.activeIndicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background-color: var(--aurora-primary);
+  box-shadow: 0 0 10px var(--aurora-primary);
+  border-radius: 0 4px 4px 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.navLink.active .activeIndicator {
+  opacity: 1;
+}
+
+/* -----------------------------------------------------------------------------
+   TOGGLE BUTTON
+   ----------------------------------------------------------------------------- */
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  padding: 12px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  border: 1px solid var(--void-border);
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+
+.toggleBtn:hover {
+  border-color: var(--aurora-secondary);
+  color: var(--aurora-secondary);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+/* -----------------------------------------------------------------------------
+   COLLAPSED STATE
+   ----------------------------------------------------------------------------- */
+.collapsed .logo {
+  padding: 32px 0;
+  justify-content: center;
+}
+
+.collapsed .logoText,
+.collapsed .navLabel,
+.collapsed .toggleBtn span {
+  display: none;
+}
+
+.collapsed .navLink {
+  justify-content: center;
+  padding: 14px 0;
+}
+
+.collapsed .activeIndicator {
+  display: none; 
+}
+
+/* -----------------------------------------------------------------------------
+   RESPONSIVE
+   ----------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .sidebar {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 0;
+    width: 80px; /* Force collapsed on tablet */
+    transform: translateX(0);
+  }
+  
+  .logoText, .navLabel {
+    display: none;
+  }
+  
+  .navLink {
+    justify-content: center;
+  }
+}

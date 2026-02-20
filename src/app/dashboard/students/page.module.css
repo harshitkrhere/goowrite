@@ -1,0 +1,372 @@
+/* =============================================================================
+   STUDENTS PAGE — DOPAMINE DESIGN
+   ============================================================================= */
+
+/* Loading State */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh; /* Centered in viewport */
+  gap: 16px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: var(--aurora-primary);
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Container */
+.container {
+  max-width: 1400px; /* Wider for better table view */
+  animation: fadeIn 0.5s var(--ease-spring);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Page Header */
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.pageTitle {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.searchWrapper {
+  flex: 1;
+  min-width: 280px;
+}
+
+.searchInputWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.searchInput {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px 0 44px;
+  background: var(--void-surface);
+  border: 1px solid var(--void-border);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: all 0.2s var(--ease-spring);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.searchInput:focus {
+  outline: none;
+  background: var(--void-highlight);
+  border-color: var(--aurora-primary);
+  box-shadow: 0 0 0 1px var(--aurora-primary), 0 0 15px rgba(99, 102, 241, 0.2);
+}
+
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.searchInput:focus + .searchIcon {
+  color: var(--aurora-primary);
+}
+
+.statusFilters {
+  display: flex;
+  gap: 8px;
+  background: var(--void-surface);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--void-border);
+}
+
+.filterBtn {
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterBtn:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.05);
+}
+
+.filterBtn.active {
+  background: var(--aurora-primary);
+  color: white;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+}
+
+/* Table */
+/* Table */
+.tableWrapper {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  /* overflow: hidden; Removed to allow menu overflow */
+  box-shadow: var(--shadow-float);
+  overflow-x: auto; /* Allow horizontal scroll if table is too wide */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px; /* Force minimum width to prevent squashing */
+}
+
+/* ... existing table styles ... */
+
+.table th {
+  padding: 16px 24px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--glass-border);
+  background: rgba(255,255,255,0.02);
+  white-space: nowrap;
+}
+
+/* Specific Column Widths */
+.table th:first-child {
+  min-width: 250px; /* Give Student Name ample space */
+}
+
+.table td {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--glass-border);
+  transition: color 0.2s;
+  white-space: nowrap; /* Prevent awkward wrapping in data cells */
+}
+
+.table tbody tr {
+  transition: background 0.2s;
+}
+
+.table tbody tr:hover {
+  background: var(--void-highlight);
+}
+
+.table tbody tr:hover td {
+  color: var(--text-primary);
+}
+
+/* Student Avatar */
+.studentInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Actions */
+.actionsWrapper {
+  position: relative;
+}
+
+.actionsBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: var(--text-tertiary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.actionsBtn:hover {
+  background: var(--void-highlight);
+  color: var(--text-primary);
+}
+
+/* Menu */
+.actionsMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 180px;
+  background: #0A0A0A;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  z-index: 50;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.menuHeader {
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--void-border);
+  opacity: 0.7;
+}
+
+.actionsMenu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.actionsMenu button:hover {
+  background: var(--void-highlight);
+  color: var(--text-primary);
+}
+
+.actionsMenu .dangerAction:hover {
+  background: rgba(244, 63, 94, 0.1);
+  color: #fb7185;
+}
+
+.menuBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.paginationInfo {
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.paginationBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--void-surface);
+  border: 1px solid var(--void-border);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.paginationBtn:hover:not(:disabled) {
+  border-color: var(--aurora-primary);
+  color: var(--aurora-primary);
+}
+
+.paginationBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 64px 24px;
+}
+
+.emptyIcon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--void-surface);
+  border-radius: 50%;
+  color: var(--text-tertiary);
+  border: 1px solid var(--void-border);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .pageHeader, .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .searchWrapper, .searchInputWrapper {
+    max-width: none;
+  }
+}
+

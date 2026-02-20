@@ -1,0 +1,187 @@
+/* =============================================================================
+   HEADER — FLOATING GLASS BAR
+   ============================================================================= */
+
+.header {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 64px;
+  padding: 0 24px;
+  margin: 0 40px; /* Float inside main content */
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full); /* Pill shape */
+  box-shadow: var(--shadow-float);
+  z-index: var(--z-sticky);
+  transition: all 0.3s var(--ease-spring);
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* -----------------------------------------------------------------------------
+   ICON BUTTONS
+   ----------------------------------------------------------------------------- */
+.iconBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.iconBtn:hover {
+  background-color: var(--void-highlight);
+  color: var(--text-primary);
+  border-color: var(--glass-border);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.notificationBadge {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--white);
+  background: var(--aurora-rose);
+  border: 2px solid var(--void-deep);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px var(--aurora-rose);
+}
+
+/* -----------------------------------------------------------------------------
+   USER MENU
+   ----------------------------------------------------------------------------- */
+.userBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px 6px 6px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.userBtn:hover {
+  background-color: var(--void-highlight);
+  border-color: var(--glass-border);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--aurora-secondary), var(--aurora-primary));
+  border-radius: var(--radius-full);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.chevron {
+  color: var(--text-secondary);
+  transition: transform 0.2s;
+}
+
+.userBtn:hover .chevron {
+  color: var(--text-primary);
+}
+
+/* -----------------------------------------------------------------------------
+   DROPDOWN
+   ----------------------------------------------------------------------------- */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 220px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-dropdown);
+  overflow: hidden;
+  padding: 8px;
+  animation: slideDown 0.2s var(--ease-spring);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.dropdownItem:hover {
+  background-color: var(--aurora-primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.dropdownDivider {
+  height: 1px;
+  background-color: var(--glass-border);
+  margin: 8px 0;
+}
+
+/* -----------------------------------------------------------------------------
+   RESPONSIVE
+   ----------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .header {
+    margin: 0 20px;
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin: 0;
+    border-radius: 0;
+    top: 0;
+    background: rgba(5, 5, 5, 0.8); /* Solid-ish on mobile */
+  }
+}

@@ -1,0 +1,261 @@
+/* =============================================================================
+   INSTITUTE SWITCHER — GLASS DROPDOWN
+   ============================================================================= */
+
+.switcher {
+  position: relative;
+  z-index: 50; /* Ensure on top */
+}
+
+.skeleton {
+  width: 100%;
+  height: 56px;
+  background: var(--void-surface);
+  border-radius: var(--radius-md);
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* -----------------------------------------------------------------------------
+   TRIGGER
+   ----------------------------------------------------------------------------- */
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--glass-highlight);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+  width: 100%;
+  text-align: left;
+}
+
+.trigger:hover {
+  background: var(--void-highlight);
+  border-color: var(--glass-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.trigger[aria-expanded="true"] {
+  border-color: var(--aurora-primary);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.instituteIcon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--void-border), var(--void-surface));
+  border-radius: 8px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.trigger:hover .instituteIcon {
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--aurora-primary), var(--aurora-secondary));
+  color: white;
+}
+
+.instituteInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.instituteName {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.instituteRole {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.chevron {
+  color: var(--text-secondary);
+  transition: transform 0.3s var(--ease-spring);
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.trigger:hover .chevron {
+  opacity: 1;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+  color: var(--aurora-primary);
+}
+
+/* -----------------------------------------------------------------------------
+   DROPDOWN
+   ----------------------------------------------------------------------------- */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 300px;
+  background: #0A0A0A; /* Dark solid base for readability */
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05);
+  z-index: 100;
+  overflow: hidden;
+  animation: slideIn 0.2s var(--ease-spring);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.dropdownHeader {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--void-border);
+  background: rgba(255,255,255,0.02);
+}
+
+.dropdownHeader span {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.instituteList {
+  max-height: 280px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.instituteItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.instituteItem:hover {
+  background: var(--void-highlight);
+}
+
+.instituteItem.active {
+  background: rgba(99, 102, 241, 0.08); /* Minimal highlight */
+}
+
+.itemIcon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--void-border);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.instituteItem.active .itemIcon {
+  background: var(--aurora-primary);
+  color: white;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+}
+
+.itemInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.itemName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.instituteItem:hover .itemName {
+  color: var(--text-primary);
+}
+
+.instituteItem.active .itemName {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.itemRole {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: capitalize;
+}
+
+.checkIcon {
+  color: var(--aurora-primary);
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.5));
+}
+
+/* -----------------------------------------------------------------------------
+   FOOTER
+   ----------------------------------------------------------------------------- */
+.dropdownFooter {
+  padding: 8px;
+  border-top: 1px solid var(--void-border);
+  background: rgba(0,0,0,0.2);
+}
+
+.createNewBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1px dashed var(--text-tertiary);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.createNewBtn:hover {
+  background: rgba(255,255,255,0.03);
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+}

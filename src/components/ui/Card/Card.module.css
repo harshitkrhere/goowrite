@@ -1,0 +1,59 @@
+/* =============================================================================
+   CARD COMPONENT — DOPAMINE DESIGN
+   ============================================================================= */
+
+.card {
+  background: var(--glass-bg); /* Glass by default */
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+/* -----------------------------------------------------------------------------
+   VARIANTS
+   ----------------------------------------------------------------------------- */
+
+.default {
+  /* Standard glass card */
+}
+
+/* Elevated — Stronger shadow/glow */
+.elevated {
+  box-shadow: var(--shadow-float);
+  border-color: rgba(255,255,255,0.1);
+}
+
+/* Outlined — Just border */
+.outlined {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+}
+
+/* -----------------------------------------------------------------------------
+   PADDING
+   ----------------------------------------------------------------------------- */
+.padding-none { padding: 0; }
+.padding-sm { padding: 12px; }
+.padding-md { padding: 24px; }
+.padding-lg { padding: 32px; }
+
+/* -----------------------------------------------------------------------------
+   INTERACTIVE
+   ----------------------------------------------------------------------------- */
+.interactive {
+  cursor: pointer;
+}
+
+.interactive:hover {
+  border-color: var(--aurora-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.2);
+}
+
+.interactive:active {
+  transform: scale(0.98);
+}
