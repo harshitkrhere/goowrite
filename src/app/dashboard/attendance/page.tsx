@@ -20,8 +20,7 @@ import styles from './page.module.css';
 
 interface StudentInBatch {
   id: string;
-  first_name: string;
-  last_name: string;
+  full_name: string;
   admission_number: string;
 }
 
@@ -63,13 +62,13 @@ export default function AttendancePage() {
 
       // Fetch students in this batch
       const { data: studentBatches } = await supabase
-        .from('student_batches')
+        .from('batch_students')
         .select(`
           student_id,
-          students(id, first_name, last_name, admission_number)
+          students(id, full_name, admission_number)
         `)
         .eq('batch_id', batch.id)
-        .eq('is_active', true);
+        .is('left_at', null);
 
       const studentList = (studentBatches || [])
         .filter(sb => sb.students)
@@ -338,7 +337,7 @@ export default function AttendancePage() {
                 >
                   <div className={styles.studentInfo}>
                     <span className={styles.studentName}>
-                      {student.first_name} {student.last_name}
+                      {student.full_name}
                     </span>
                     <span className={styles.studentId}>{student.admission_number}</span>
                   </div>
